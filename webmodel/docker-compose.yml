@@ -1,0 +1,10 @@
+version: "3.5"
+services:
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    platform: linux/x86_64
+    working_dir: /app
+
