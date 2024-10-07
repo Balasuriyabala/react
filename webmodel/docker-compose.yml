@@ -7,4 +7,8 @@ services:
       - "3005:3005"
     platform: linux/x86_64
     working_dir: /app
-
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./frontend:/app
+    command: ["npm", "start"]
