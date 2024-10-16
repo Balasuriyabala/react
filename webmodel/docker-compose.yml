@@ -1,14 +1,15 @@
-version: "3.5"
+version: '3'
 services:
   frontend:
-    container_name: frontend
-    build: ./frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "3005:3005"
-    platform: linux/x86_64
-    working_dir: /app
+      - "3000:3000"  # Map port 3000 in the container to port 3000 on the host
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=production  # Set environment variable for production mode
     volumes:
-      - ./frontend:/app
-    command: ["npm", "start"]
+      - .:/app  # Optional for development: sync host directory with container
+    stdin_open: true  # Keep stdin open (useful for debugging)
+    tty: true  # Allocate a pseudo-TTY (useful for interactive processes)
+    restart: unless-stopped  # Restart policy
